@@ -6,15 +6,16 @@
 P=$(jq -r '.prompt // ""' 2>/dev/null) || exit 0
 
 LEN=$(printf '%s' "$P" | wc -m | tr -d ' ')
-if [ "$LEN" -lt 3 ]; then
+if [ "$LEN" -lt 1 ]; then
     exit 0
 fi
 
+# Skip ONLY greetings. y/n must trigger ultrathink (the action after "y" is what matters).
 case "$P" in
-    y|Y|n|N|yes|no|ok|OK|thanks|hi|hello|bye)
+    thanks|hi|hello|bye)
         exit 0
         ;;
-    はい|いいえ|了解|わかった|ありがとう|うん|そうだね|おはよう|こんにちは|こんばんは|お疲れ|おつかれ|お疲れ様|おやすみ)
+    ありがとう|ありがと|おはよう|こんにちは|こんばんは|お疲れ|おつかれ|お疲れ様|おやすみ)
         exit 0
         ;;
 esac

@@ -63,10 +63,16 @@ This hook **structurally forces the deeper path** for every prompt that warrants
 
 The hook **does NOT** fire on:
 - Empty / 1-2 character responses
-- `y`, `n`, `ok`, `はい`, `いいえ`, `了解`, etc.
-- Common greetings (`hi`, `hello`, `おはよう`, `お疲れ様`, etc.)
+- Common greetings (`hi`, `hello`, `bye`, `thanks`, `おはよう`, `お疲れ様`, etc.)
 
-The hook **fires on** anything else, including all substantial questions. This is the "maximum quality mode" preset designed for Claude Max plan users.
+The hook **DOES fire on** everything else, including:
+- `y`, `n`, `yes`, `no`, `はい`, `いいえ`, `OK`, `了解` — **intentionally**
+
+**Why `y`/`n` triggers ultrathink (counterintuitive but critical):**
+
+When you answer `y` to a Claude confirmation prompt like "Proceed with implementation? (y/n)", the **next action Claude takes (the implementation itself)** is exactly when deep reasoning matters most. If `y` were excluded, Claude would dive into actual implementation work with shallow reasoning. Excluding `y` defeats the entire purpose of the hook at the most critical moment.
+
+This is the "maximum quality mode" preset designed for Claude Max plan users.
 
 If you want more conservative activation (e.g., only fire on technical keywords), see `examples/conservative_mode.sh`.
 
@@ -147,10 +153,16 @@ Claude の思考の深さがセッション間でばらつくのは：
 
 このフックが**発動しない**のは：
 - 空 or 1-2文字の応答
-- `y` / `n` / `OK` / `はい` / `いいえ` / `了解` 等
-- 一般的な挨拶（`おはよう` / `お疲れ様` 等）
+- 一般的な挨拶（`おはよう` / `お疲れ様` / `ありがとう` / `hi` / `hello` 等）
 
-それ以外のすべてのプロンプトで発動します。これは Claude Max プラン向けの「最大品質モード」プリセットです。
+それ以外のすべてのプロンプトで発動します。以下も**意図的に発動対象**：
+- `y` / `n` / `yes` / `no` / `はい` / `いいえ` / `OK` / `了解`
+
+**なぜ y/n でも ultrathink を発動させるのか（直感に反するが重要）:**
+
+Claude の「実装してよいですか？(y/n)」のような確認に対して `y` と答えた直後、**Claude が次に実行する処理（=実装作業そのもの）こそ深い思考が必要な瞬間**です。もし `y` を除外すると、Claude は浅い思考のまま実装に突入してしまい、フックの存在意義が**最も重要な瞬間に消える**ことになります。
+
+これは Claude Max プラン向けの「最大品質モード」プリセットです。
 
 もう少し保守的な発動（技術的キーワードのみ）にしたい場合は `examples/conservative_mode.sh` を参照。
 

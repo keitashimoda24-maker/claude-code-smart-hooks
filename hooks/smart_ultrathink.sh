@@ -8,19 +8,20 @@
 
 P=$(jq -r '.prompt // ""' 2>/dev/null) || exit 0
 
-# Skip empty or 1-2 character responses
+# Skip only empty prompts (y/n/short answers should trigger ultrathink — see README)
 LEN=$(printf '%s' "$P" | wc -m | tr -d ' ')
-if [ "$LEN" -lt 3 ]; then
+if [ "$LEN" -lt 1 ]; then
     exit 0
 fi
 
-# Skip y/n confirmations and common greetings (Japanese + English)
-# Customize this list for your own usage patterns
+# Skip ONLY greetings and casual acknowledgements.
+# IMPORTANT: y/n/yes/no/はい/いいえ are NOT excluded, because they answer Claude's questions —
+# the response AFTER "y" (the actual action) is exactly when ultrathink matters most.
 case "$P" in
-    y|Y|n|N|yes|no|ok|OK|thanks|hi|hello|bye)
+    thanks|hi|hello|bye)
         exit 0
         ;;
-    はい|いいえ|了解|わかった|ありがとう|ありがと|うん|そうだね|おはよう|こんにちは|こんばんは|お疲れ|おつかれ|お疲れ様|おやすみ)
+    ありがとう|ありがと|おはよう|こんにちは|こんばんは|お疲れ|おつかれ|お疲れ様|おやすみ)
         exit 0
         ;;
 esac

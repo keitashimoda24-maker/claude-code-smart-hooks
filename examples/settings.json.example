@@ -1,0 +1,17 @@
+{
+  "_comment": "Add this hooks block to your ~/.claude/settings.json (merge with existing hooks if any)",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/smart_ultrathink.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

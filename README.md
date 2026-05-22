@@ -188,11 +188,25 @@ MIT
 
 ## Background
 
+I'm a non-engineer area manager running 10 convenience stores in Japan, and I use Claude Code daily to build automation (30+ systems so far: shift scheduling for 9 stores, payroll PDF distribution for 25 staff, expense management, attendance checkers, etc.).
+
 This project emerged from a real frustration: asking the same question in two different Claude Code sessions could yield wildly different quality of answers. One session would recommend a $5,000 third-party tool. Another session would design a 50-line custom script that solved the same problem for free.
 
 The difference wasn't the question — it was Claude's reasoning depth. After investigating, the answer was clear: **stop relying on Claude's default reasoning. Force the structure of deep reasoning at the hook level.**
 
-This is the result.
+This is the result. It's now part of how I keep Claude Code's output consistent across the dozens of automation projects I run.
+
+---
+
+## 背景
+
+私はコンビニ10店舗を統括するエリアマネージャー（非エンジニア）で、Claude Code を使って日々の業務自動化を構築しています（30件以上: 9店舗のシフト管理、25名分の給与明細PDF配布、経費管理、勤怠チェッカー等）。
+
+このプロジェクトは現実的な不満から生まれました — 同じ質問を別のセッションで聞くと、回答の質が大きくブレるのです。あるセッションでは ¥5,000 のサードパーティツールを推奨され、別のセッションでは同じ問題を 50行のカスタムスクリプトで無料で解決する案が出る。
+
+問題は質問ではなく、Claude の思考の深さでした。調査の結果、答えは明確でした: **Claude のデフォルト推論に頼るのをやめる。深い思考の構造を hook レベルで強制する。**
+
+これがその結果です。今では私が運営する数十の自動化プロジェクトで、Claude Code の出力を安定させる仕組みの一部になっています。
 
 ## Author
 
@@ -202,3 +216,4 @@ This is the result.
 
 - [devils-advocate](https://github.com/keitashimoda24-maker/devils-advocate) - Devil's advocate agent for plan/design review
 - [slash-commands-jp](https://github.com/keitashimoda24-maker/slash-commands-jp) - Japanese slash command reference plugin
+- [mac-pixel-bridge](https://github.com/keitashimoda24-maker/mac-pixel-bridge) - Resilient ADB clipboard / screenshot bridge for Mac &lt;-&gt; Android
